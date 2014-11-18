@@ -1,5 +1,9 @@
 # Type Checker
-A simple demonstration of using the Java annotation processor to give compilation errors for annotated types.  
+A simple demonstration of using the Java annotation processor to give compilation errors for annotated types. See output by running: 
+
+```bash
+./gradlew compileJava
+```  
 
 ## Intellij Settings
 
