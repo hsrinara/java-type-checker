@@ -1,5 +1,8 @@
 #!/bin/sh
 
+BUILD_DIR=build
+LIB_DIR=lib
+
 print_environment_variables()
 {
   echo "JAVA_HOME is:" $JAVA_HOME
@@ -8,8 +11,8 @@ print_environment_variables()
 initialise() 
 {
   echo "Cleaning workspace" 
-  rm -rf build
-  mkdir build
+  rm -rf $BUILD_DIR
+  mkdir $BUILD_DIR
 }
 
 find_java_source_files()
@@ -20,7 +23,7 @@ find_java_source_files()
 compile_main() 
 {
   echo "Compiling main"
-  $JAVA_HOME/bin/javac -proc:none -cp "lib/checker-1.8.7.jar:build" -d build `find_java_source_files`
+  $JAVA_HOME/bin/javac -proc:none -cp "$LIB_DIR/checker-1.8.7.jar:$BUILD_DIR" -d $BUILD_DIR `find_java_source_files`
 }
 
 check_units()
@@ -30,8 +33,8 @@ check_units()
     -proc:only \
     -Aunits=org.hsrinara.typechecker.custom.Price,org.hsrinara.typechecker.custom.Quantity \
     -processor org.checkerframework.checker.units.UnitsChecker \
-    -cp lib/checker-1.8.7.jar:build \
-    -d build \
+    -cp $LIB_DIR/checker-1.8.7.jar:$BUILD_DIR \
+    -d $BUILD_DIR \
     `find_java_source_files`
 }
 
