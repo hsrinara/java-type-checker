@@ -2,7 +2,7 @@
 A simple demonstration of using the Java annotation processor to give compilation errors for annotated types. See output by running: 
 
 ```bash
-./gradlew compileJava
+./compile.sh
 ```  
 
 ## Intellij Settings

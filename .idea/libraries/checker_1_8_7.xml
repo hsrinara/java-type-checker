@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: checker-1.8.7">
+  <library name="checker-1.8.7">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/checker-1.8.7.jar!/" />
     </CLASSES>
