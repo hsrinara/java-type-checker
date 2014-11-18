@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 print_environment_variables()
 {
@@ -20,13 +20,14 @@ find_java_source_files()
 compile_main() 
 {
   echo "Compiling main"
-  $JAVA_HOME/bin/javac -cp "lib/checker-1.8.7.jar:build" -d build `find_java_source_files`
+  $JAVA_HOME/bin/javac -proc:none -cp "lib/checker-1.8.7.jar:build" -d build `find_java_source_files`
 }
 
 check_units()
 {
   echo "Checking units"
   $JAVA_HOME/bin/javac \
+    -proc:only \
     -Aunits=org.hsrinara.typechecker.custom.Price,org.hsrinara.typechecker.custom.Quantity \
     -processor org.checkerframework.checker.units.UnitsChecker \
     -cp lib/checker-1.8.7.jar:build \
@@ -34,8 +35,8 @@ check_units()
     `find_java_source_files`
 }
 
-print_environment_variables
-initialise
-compile_main
-check_units
+print_environment_variables && 
+initialise && 
+compile_main && 
+check_units 
 
