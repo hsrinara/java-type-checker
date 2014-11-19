@@ -27,6 +27,15 @@ public class TypeCheckingCustomAnnotatedTypes {
         return price(100);
     }
 
+    @Price
+    private static long returnsAPriceWithAnnotatedMethod() {
+        return price(100);
+    }
+
+    private static void takesAQuantity(@Quantity long quantity) {
+        System.out.println("Received quantity: " + quantity);
+    }
+
     public static void main(String[] args) throws Exception {
         // Statements that pass compilation
         takesAPrice(price(100));
@@ -40,6 +49,7 @@ public class TypeCheckingCustomAnnotatedTypes {
         takesAPriceInAGeneric(() -> price(100));
         takesAPriceInAGeneric(TypeCheckingCustomAnnotatedTypes::returnsAPrice);
 
+        takesAPrice(returnsAPriceWithAnnotatedMethod());
 
         // Statements that fail compilation
 //        takesAPrice(quantity(5));
@@ -65,5 +75,7 @@ public class TypeCheckingCustomAnnotatedTypes {
 //        takesAPriceInAGeneric(() -> quantity(100));
 
 //        takesAPriceInAGeneric(TypeCheckingCustomAnnotatedTypes::returnsALong);
+
+//        takesAQuantity(returnsAPriceWithAnnotatedMethod());
     }
 }
