@@ -32,10 +32,13 @@ find_java_source_files()
   find src/main/java -type f -name "*.java" 
 }
 
-compile_main() 
+## If we were using a proper build tool, these annotated types would go in a submodule which we would depend on.
+compile_custom_annotated_types()
 {
   echo "Compiling main"
-  $JAVA_HOME/bin/javac -proc:none -cp "$LIB_DIR/checker-1.8.7.jar:$BUILD_DIR" -d $BUILD_DIR `find_java_source_files`
+  $JAVA_HOME/bin/javac -proc:none -cp "$LIB_DIR/checker-1.8.7.jar:$BUILD_DIR" -d $BUILD_DIR \
+    src/main/java/org/hsrinara/typechecker/custom/Price.java \
+    src/main/java/org/hsrinara/typechecker/custom/Quantity.java
 }
 
 check_units()
@@ -53,6 +56,6 @@ check_units()
 guarantee_java_8 &&
 print_environment_variables && 
 initialise && 
-compile_main && 
+compile_custom_annotated_types &&
 check_units 
 
