@@ -49,7 +49,6 @@ check_units()
     -Aunits=org.hsrinara.typechecker.custom.Price,org.hsrinara.typechecker.custom.Quantity \
     -processor org.checkerframework.checker.units.UnitsChecker \
     -cp $LIB_DIR/checker-1.8.7.jar:$BUILD_DIR \
-    -d $BUILD_DIR \
     `find_java_source_files`
 }
 
